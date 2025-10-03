@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<body>
+<h1>Admin Dashboard</h1>
+
+<h2>Products</h2>
+<a href="{{ url_for('add_product') }}">Add Product</a>
+<ul>
+{% for p in products %}
+<li>{{ p.name }}
+  [<a href="{{ url_for('edit_product', id=p.id) }}">Edit</a>]
+  [<a href="{{ url_for('delete_product', id=p.id) }}">Delete</a>]
+</li>
+{% endfor %}
+</ul>
+
+<h2>Options</h2>
+<a href="{{ url_for('add_option') }}">Add Option</a>
+<ul>
+{% for o in options %}
+<li>{{ o.name }}
+  [<a href="{{ url_for('edit_option', id=o.id) }}">Edit</a>]
+  [<a href="{{ url_for('delete_option', id=o.id) }}">Delete</a>]
+</li>
+{% endfor %}
+</ul>
+
+<h2>Product-Option Relations</h2>
+<a href="{{ url_for('add_relation') }}">Add Relation</a>
+<table border="1">
+<tr><th>Product</th><th>Option</th><th>Description</th><th>Actions</th></tr>
+{% for r in relations %}
+<tr>
+<td>{{ r.product.name }}</td>
+<td>{{ r.option.name }}</td>
+<td>{{ r.description }}</td>
+<td>
+<a href="{{ url_for('edit_relation', id=r.id) }}">Edit</a>
+<a href="{{ url_for('delete_relation', id=r.id) }}">Delete</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
+
